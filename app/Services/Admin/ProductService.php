@@ -4,44 +4,44 @@ namespace App\Services\Admin;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
-
+use App\Services\Admin\FileUploadService;
 class ProductService
 {
     private $product;
+    private $fileUploadService;
 
-    function __construct(Product $product){
+    function __construct(Product $product, FileUploadService $fileUploadService)
+    {
         $this->product = $product;
+        $this->fileUploadService = $fileUploadService;
+    }
+
+    public function getListProduct($data)
+    {
+        $products = Product::all();
+        // $products->map(function ($product) {
+        //     $product->action = view('products.elements.actions', ['productId' => $product->id])->render();
+        // });
+        return [
+            'result' => $products,
+        ];
     }
 
     public function createProduct($data)
     {
+        if (isset($data)) {
+        $data['remaining_quantity'] = $data['quantity'];
         $product = $this->product->create($data);
 
-        $imageType = ['png', 'jpg', 'jpeg', 'gif'];
-        if (isset($data['code'])) {
-            if (isset($data['imageIds'])) {
-                $product->fieldCertificateFiles()->whereNotIn('id', $data['imageIds'])->delete();
-            }
+        $tempFolder = 'products/';
+        $files = $this->fileUploadService->getAllTempFile($tempFolder);
+        foreach ($files as $file) {
+            Storage::move($file, 'public/uploads/products/' . basename($file));
+            $dataFile['file_path']   = 'uploads/products/' . basename($file);
 
-            if (isset($data['files'])) {
-                $this->fileUploadService->updateMultipleFiles($product, $data);
-            } else {
-                $tempFolder = 'products/';
-                $files = $this->fileUploadService->getAllTempFile($tempFolder);
-                foreach ($files as $file) {
-                    Storage::move($file, 'public/uploads/products/' . basename($file));
-                    $dataFile['file_path']   = 'uploads/products/' . basename($file);
-
-                    $dataFile['type'] = config('constant.video_type');
-                    if (in_array(pathinfo($file)['extension'], $imageType)) {
-                        $dataFile['type'] = config('constant.image_type');
-                    }
-                    $product->productImages()->create($dataFile);
-                }
-                Storage::delete($files);
-            }
-        } else {
-            $this->fieldCertificateFile->where('field_id', $field->id)->delete();
+            $product->productImages()->create($dataFile);
+        }
+        Storage::delete($files);
         }
     }
 }

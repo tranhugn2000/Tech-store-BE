@@ -13,9 +13,18 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
+    public function prepareForValidation()
+    {
+        if (isset($this->request->all()['data'])) {
+            parse_str(($this->request->all()['data']), $arr);
 
+            foreach ($arr as $key => $value) {
+                $this->request->set($key, $value);
+            }
+        }
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +33,10 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name'     => 'required|max:191',
+            'name'      => 'required|max:191',
+            'price'     => 'required|max:191',
+            'quantity'  => 'required|max:191',
+            'files'     => 'numeric|min:1',
         ];
 
         return $rules;     

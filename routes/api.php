@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Client\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['api'])->group(function ()  {
-    // route::post('/register', [AuthController::class, 'register']);
+    Route::get('/getProduct', [ProductController::class, 'index']);
 
     Route::controller(AuthController::class)->prefix('auth')->group(function () {
         Route::post('/register', 'register');

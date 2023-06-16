@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Admin\ProductService;
 use App\Http\Requests\Product\CreateRequest;
-
-
+use App\Http\Responses\SuccessResponse;
 
 class ProductController extends Controller
 {
@@ -50,10 +49,9 @@ class ProductController extends Controller
                 'result' => true,
             ]);
         }
-
+        
         try {
             $data = $request->all();
-            dd($data, $request->files);
             $this->productService->createProduct($data);
             $redirectRoute = 'products.index';
 
@@ -108,5 +106,11 @@ class ProductController extends Controller
     public function destroy(Request $request)
     {
         //
+    }
+
+    public function getListProduct(Request $request)
+    {
+        $data = $this->productService->getListProduct($request->all());
+        return (new SuccessResponse('Success', $data))->response();
     }
 }

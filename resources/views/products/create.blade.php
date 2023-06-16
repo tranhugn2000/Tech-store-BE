@@ -9,8 +9,8 @@
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Name</span>
-                
-                <input type="text" name="name" id="name" placeholder="Name" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+
+                <input type="text" name="name" id="name" placeholder="Name" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 input-val" />
                 @error('name')
                     <span class="help-block has-error text-red-600">{{ $message }}</span>
                 @enderror
@@ -21,21 +21,29 @@
                 <span class="text-gray-700 dark:text-gray-400">
                     Category
                 </span>
-                <select name="category" id="category" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                    <option value="">$1,000</option>
-                    <option value="">$5,000</option>
-                    <option value="">$10,000</option>
-                    <option value="">$25,000</option>
+                <select name="category_id" id="category_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                    <option value="0">$1,000</option>
+                    <option value="2">$5,000</option>
+                    <option value="1">$10,000</option>
+                    <option value="3">$25,000</option>
                 </select>
             </label>
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Price</span>
                 <input type="number" name="price" id="price" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
+                @error('price')
+                    <span class="help-block has-error text-red-600">{{ $message }}</span>
+                @enderror
+                <p class="error_msg text-red-600" id="error-price"></p>
             </label>
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Quantity</span>
-                <input type="number" name="quantity" id="quantity" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
+                <input type="number" name="quantity" id="quantity" class="block w-full mt-1 text-sm dark:bg-gray-700 input-val" placeholder="Jane Doe" />
+                @error('quantity')
+                    <span class="help-block has-error text-red-600">{{ $message }}</span>
+                @enderror
+                <p class="error_msg text-red-600" id="error-quantity"></p>
             </label>
 
             <label class="block mt-4 text-sm ">
@@ -45,7 +53,11 @@
             <label class="block mt-4 text-sm ">
                 <span class="text-gray-700 dark:text-gray-400">Product's image</span>
                 <input id="thefiles" type="file" name="files[]" accept=".jpg, .png, image/jpeg, image/png" multiple />
-                <span id="error-img"></span>
+                
+                @error('files')
+                    <span class="help-block has-error text-red-600">{{ $message }}</span>
+                @enderror
+                <p class="error_msg text-red-600" id="error-files"></p>  
             </label>
             <div class="flex justify-end mt-4">
                 <button type="button" id="btn-create" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-500 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadFileController;
@@ -29,8 +30,11 @@ Route::middleware(['auth.admin'])->group(function () {
     });
 
     Route::resource('products', ProductController::class);
+    Route::get('getListProduct', [ProductController::class, 'getListProduct'])->name('products.getListProduct');
 
     Route::resource('uploadFiles', UploadFileController::class);
+
+    Route::resource('categories', CategoryController::class);
 
 
 });

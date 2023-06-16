@@ -1,14 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
-use App\Http\Responses\SuccessResponse;
-use App\Models\Product;
+use App\Services\Client\ProductService;
 
-class DashboardController extends Controller
+
+class ProductController extends Controller
 {
+    private $productService;
+
+    function __construct(ProductService $productService){
+        $this->productService = $productService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $products = $this->productService->getProduct();
+        if (!$products) {
+            return response()->json([
+                'status'  => 1,
+                'message' => __('api.data_not_found')
+            ], 400);
+        }
+        $responseData =  ProductResource::collection($products);
+        return response()->json([
+            'status'  => 0,
+            'message' => "",
+            'data'    => $responseData
+        ], 200);
     }
 
     /**
@@ -26,6 +44,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
