@@ -5801,11 +5801,7 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");

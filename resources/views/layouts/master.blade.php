@@ -9,9 +9,11 @@
 
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/datatable.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/tailwind.output.css') }}" />
   <link rel="stylesheet" href="{{ asset('plugins/fancy-file-uploader/fancy_fileupload.css') }}" type="text/css" media="all" />
-  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
   @yield('css')
 </head>
 
@@ -27,7 +29,7 @@
       </main>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/init-alpine.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
@@ -36,6 +38,7 @@
   <script src="{{ asset('plugins/fancy-file-uploader/jquery.fileupload.js') }}"></script>
   <script src="{{ asset('plugins/fancy-file-uploader/jquery.iframe-transport.js') }}"></script>
   <script src="{{ asset('plugins/fancy-file-uploader/jquery.fancy-fileupload.js ') }}"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
   <script>
     $.ajaxSetup({

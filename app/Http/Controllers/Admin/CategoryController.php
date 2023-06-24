@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responses\SuccessResponse;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Services\Admin\CategoryService;
@@ -104,5 +105,12 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function getListCategory(Request $request)
+    {
+        $data = $this->categoryService->getListCategory($request->all());
+
+        return (new SuccessResponse('Success', $data))->response();
     }
 }

@@ -1,0 +1,179 @@
+.hover-clear:hover {
+    background: white;
+    color: black
+}
+
+.title-datatable {
+    color: #0275d8;
+}
+
+.statical {
+    width: 50%;
+    text-align: center;
+    float: left;
+}
+
+.statical_view {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+thead tr th {
+    text-align: center
+}
+
+tbody tr td {
+    text-align: center;
+}
+
+tbody tr td:nth-child(2) {
+    text-align: left
+}
+
+thead tr {
+    background: #F3F5F9;
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    border-bottom: 1px solid #dee2e6 !important;
+    vertical-align: middle !important;
+    line-height: 1.5 !important;
+}
+
+.fz-12 {
+    font-size: 12px
+}
+
+.fz-13 {
+    font-size: 13px
+}
+
+table.dataTable.no-footer {
+    margin: 0px !important;
+}
+
+._title-datatable {
+    padding: 11px 12px 9px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: #f3f5f9;
+    border: 1px solid #dfe6ec;
+    border-radius: 3px 3px 0 0;
+}
+
+.data-table-toolbar {
+    margin-bottom: 15px;
+}
+
+.border-radius-select {
+    border-radius: 5px;
+}
+
+.paginate_button {
+    padding: 6px 10px;
+}
+
+.ellipsis {
+    background: none;
+    color: #999;
+    padding: 6px 10px;
+    border: 1px solid rgba(0, 0, 0, .15);
+    cursor: pointer;
+}
+
+.action-custom {
+    display: inline-block;
+    width: 100%;
+    border: none
+}
+
+.pager {
+    margin: 0;
+}
+
+.btn-custom-action {
+    background: none;
+    padding: 0px 40px;
+    border: 1px solid rgba(0, 0, 0, .15);
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 11px;
+    color: #1f2d3d;
+    margin-bottom: 3px;
+    margin-left: 1.5px;
+}
+
+.btn-custom-action:hover {
+    background-color: #ffb701;
+    color: white
+}
+
+.btn-custom-actions:hover {
+    background-color: #ffb701;
+    color: white
+}
+.mgt-10 {
+    margin-top: -10px
+}
+
+.kt-badge.kt-badge--dot {
+    display: inline-block;
+    line-height: 6px;
+    min-height: 6px;
+    min-width: 6px;
+    height: 6px;
+    width: 6px;
+    font-size: 0;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #f34a4a;
+}
+
+.content-page>.content {
+    /* padding: 0; */
+    /* background: none; */
+    /* box-shadow: none */
+}
+
+.datatable_custom_content {
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important
+}
+
+.bg-none {
+    background: none !important
+}
+
+.data-table-toolbar {
+    background: #fff !important;
+}
+
+.table {
+    background: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_info {
+    clear: both !important;
+    float: left !important;
+    padding-top: 0.755em !important;
+}
+
+.dt-left {
+    text-align: left !important;
+}
+
+.dt-right {
+    text-align: right !important;
+}

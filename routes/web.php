@@ -35,6 +35,7 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::resource('uploadFiles', UploadFileController::class);
 
     Route::resource('categories', CategoryController::class);
+    Route::post('getListCategory', [CategoryController::class, 'getListCategory'])->name('category.getListCategory');
 
 
 });
