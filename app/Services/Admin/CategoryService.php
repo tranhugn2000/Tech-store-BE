@@ -13,6 +13,13 @@ class CategoryService
     }
 
 
+    public function getCategory()
+    {
+        $categories = $this->category->get();
+
+        return $categories;
+    }
+
     public function createCategory($data)
     {
         if (isset($data)) {
@@ -29,7 +36,7 @@ class CategoryService
             ->limit($data['length'])
             ->get();
         $categories->map(function ($category) {
-            $category->name = limitCharacter($category->name, 30);
+            $category->name = limitCharacter($category->name, 30);  
             $category->action = view('categories.elements.actions', ['categoryId' => $category->id])->render();
         });
 
@@ -42,8 +49,8 @@ class CategoryService
 
     public function getCategoryFilters($data)
     {
-        $products = $this->category->filter($data);
+        $categories = $this->category->filter($data);
 
-        return $products;
+        return $categories;
     }
 }

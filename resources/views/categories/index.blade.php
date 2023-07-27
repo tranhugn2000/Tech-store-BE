@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
 <div class="container px-6 mx-auto grid">
-    <!-- component -->
 
     <div class="container mx-auto">
         <div class="flex justify-between items-center">
@@ -17,28 +16,27 @@
         </div>
         <div class="mb-4 flex justify-between items-center">
             <div class="flex-1 pr-4">
-                <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+                <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500 search-form" >
                     <div class="absolute inset-y-0 flex items-center pl-2">
                         <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <input class="w-1/2 rounded-lg border-0 shadow-lg pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:border-0 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input" type="text" id="search" placeholder="Search..." aria-label="Search" />
                 </div>
             </div>
         </div>
-        <div>
+        <div class="w-full overflow-hidden rounded-lg shadow-xs">
             @include('categories.elements.table_category')
         </div>
     </div>
 
 </div>
-<script src="{{ asset('js/jquery.min.js') }}"></script>
+@endsection
+@section('script')
 
 <script>
     $(document).ready(function() {
-        let search = $('#search').val();
-        var productTable = $('#category_table').DataTable({
+        var categoryTable = $('#category_table').DataTable({
             "fnDrawCallback": function(oSettings) {
                 var pgr = $(oSettings.nTableWrapper).find('.dataTables_paginate')
                 if (oSettings.fnRecordsDisplay() == 0) {
@@ -51,7 +49,7 @@
             },
             processing: true,
             serverSide: true,
-            searching: false,
+            searching: true,
             "ordering": true,
             order: [
                 [0, 'desc']
@@ -60,7 +58,7 @@
                 url: "{{ route('category.getListCategory') }}",
                 type: "POST",
                 data: function(d) {
-                    d.keywords = $('#search').val();
+                    d.keywords = $('#category_table_filter input').val();
                 },
                 dataSrc: function(response) {
                     response.recordsTotal = response.data.recordsTotal;
@@ -104,19 +102,21 @@
                 info: "{{ __('common.datatable_info') }}",
                 infoEmpty: "{{ __('common.datatable_info_empty') }}",
                 infoFiltered: "{{ __('common.datatable_info_filtered') }}",
-                search: "{{ __('common.search') }}",
+                searchPlaceholder: "Search...",
+                search: "",
                 paginate: {
                     "previous": "<i class='bx bxs-chevron-left' ></i>",
                     "next": "<i class='bx bxs-chevron-right' ></i>"
                 }
             }
         });
-        console.log('121321');
+        $("#category_table_filter input").addClass("w-1/2 rounded-lg border-0 shadow-lg pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:border-0 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input");
+        $("#category_table_filter").prependTo(".search-form");
 
         $(document).on('submit', '.form-search', function(e) {
             e.preventDefault();
             form_search = $(this).serialize();
-            productTable.draw();
+            categoryTable.draw();
         });
 
         $(document).on('click', '#deleteBtn', function() {

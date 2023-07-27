@@ -61,4 +61,11 @@ class FileUploadService
 
         return $fileName;
     }
+
+    public function deleteAllTempFile($tempFolder)
+    {
+        $files = Storage::files('public/uploads/tmp/' . $tempFolder);
+
+        Storage::delete($files);
+    }
 }

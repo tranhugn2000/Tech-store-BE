@@ -27,4 +27,19 @@ class Controller extends BaseController
         Log::error($throwable->getMessage());
         Log::error($throwable->getTraceAsString());
     }
+
+    protected function createSuccessRedirect($route, $param = null): RedirectResponse
+    {
+        return redirect()->route($route, $param)->with('success', __('common.messages.create_success'));
+    }
+
+    protected function updateSuccessRedirect($route, $param = []): RedirectResponse
+    {
+        return redirect()->route($route, $param)->with('success', __('common.messages.update_success'));
+    }
+
+    protected function deleteSuccessRedirect($route, $param = []): RedirectResponse
+    {
+        return redirect()->route($route, $param)->with('success', __('common.messages.delete_success'));
+    }
 }

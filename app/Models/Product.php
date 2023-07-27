@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Filters\ProductFilter;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,5 +33,10 @@ class Product extends Model
     public function billDetails() 
     {
         return $this->hasMany(BillDetail::class);
+    }
+
+    public function modelFilter(): ?string
+    {
+        return $this->provideFilter(ProductFilter::class);
     }
 }

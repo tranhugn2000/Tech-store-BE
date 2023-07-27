@@ -16,4 +16,18 @@ return [
     'datatable_processing' => 'Please wait a second',
     'datatable_previous_page' => 'Previous',
     'datatable_next_page' => 'Next',
+    'are_you_sure' => 'Are you sure?',
+    'delete_note' => 'You wont be able to revert this!',
+    'accept' => 'Yes, delete it!',
+    'cancel' => 'Cancel',
+    'messages' => [
+        'create_success' => 'Create Successfully!',
+        'update_success' => 'Update Successfully!',
+        'delete_success' => 'Delete Successfully!',
+        'import_success' => 'Import Successfully',
+        'send_mail_success' => 'Send mail Successfully',
+        'error' => 'Error!',
+        'create_success_load' => 'Create Successfully,ou will be redirected to main page in 3 seconds!',
+        'update_success_load' => 'Update Successfully,ou will be redirected to main page in 3 seconds!',
+    ],
 ];

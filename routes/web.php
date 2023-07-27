@@ -30,7 +30,7 @@ Route::middleware(['auth.admin'])->group(function () {
     });
 
     Route::resource('products', ProductController::class);
-    Route::get('getListProduct', [ProductController::class, 'getListProduct'])->name('products.getListProduct');
+    Route::post('getListProduct', [ProductController::class, 'getListProduct'])->name('products.getListProduct');
 
     Route::resource('uploadFiles', UploadFileController::class);
 

@@ -15,6 +15,7 @@ class CreateRequest extends FormRequest
     {
         return true;
     }
+    
     public function prepareForValidation()
     {
         if (isset($this->request->all()['data'])) {
@@ -37,6 +38,7 @@ class CreateRequest extends FormRequest
             'price'     => 'required|max:191',
             'quantity'  => 'required|max:191',
             'files'     => 'numeric|min:1',
+            'category_id'   => 'required',
         ];
 
         return $rules;     

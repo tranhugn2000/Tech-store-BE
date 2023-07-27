@@ -6,14 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Admin\ProductService;
 use App\Http\Requests\Product\CreateRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Http\Responses\SuccessResponse;
+use App\Models\Product;
+use App\Services\Admin\CategoryService;
 
 class ProductController extends Controller
 {
     private $productService;
+    private $categoryService;
+    private $uploadFileController;
 
-    function __construct(ProductService $productService){
+    function __construct(ProductService $productService, CategoryService $categoryService, UploadFileController $uploadFileController){
         $this->productService = $productService;
+        $this->categoryService = $categoryService;
+        $this->uploadFileController = $uploadFileController;
+
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +40,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $tempFolder = 'products/';
+        $this->uploadFileController->deleteAllTempFile($tempFolder);
+
+        $categories = $this->categoryService->getCategory();
+        return view('products.create',  compact('categories'));
 
     }
 
@@ -44,12 +56,12 @@ class ProductController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        
         if($request->ajax()) {
             return response()->json([
                 'result' => true,
             ]);
         }
-        
         try {
             $data = $request->all();
             $this->productService->createProduct($data);
@@ -69,9 +81,8 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
     }
 
     /**
@@ -80,9 +91,16 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        //Xóa hết img trong tempFolder trước khi update
+        $tempFolder = 'products/';
+        $this->uploadFileController->deleteAllTempFile($tempFolder);
+
+        $categories = $this->categoryService->getCategory();
+        $product = $this->productService->getProductById($id);
+
+        return view('products.edit',  compact('categories', 'product'));
     }
 
     /**
@@ -92,9 +110,26 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateRequest $request, $productId)
     {
-        //
+        
+        if($request->ajax()) {
+            return response()->json([
+                'result' => true,
+            ]);
+        }
+        
+        try {
+            $data = $request->all();
+            $this->productService->updateProduct($data, $productId);
+            $redirectRoute = 'products.index';
+
+            return $this->updateSuccessRedirect($redirectRoute);
+        } catch (\Exception $e) {
+            $this->logError($e);
+
+            return $this->errorBack(__('common.messages.error'));
+        }
     }
 
     /**
@@ -103,9 +138,18 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        //
+        try {
+            $this->productService->deleteProductById($id);
+            $redirectRoute = 'products.index';
+
+            return $this->deleteSuccessRedirect($redirectRoute);
+        } catch (\Exception $e) {
+            $this->logError($e);
+
+            return $this->errorBack(__('common.messages.error'));
+        }
     }
 
     public function getListProduct(Request $request)
