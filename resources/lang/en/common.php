@@ -9,7 +9,7 @@ return [
     'invalid_extension_fancyfile'       => 'File invalid.',
     'invalid_size_fancyfile'       => 'File is too large. Maximum file size is : .',
     'datatable_info_filtered' => '( Filtered _MAX_ out of total records )',
-    'datatable_info' => 'Showing _START_ to _END_ out of _TOTAL_ records',
+    'datatable_info' => 'Showing _START_-_END_ of _TOTAL_ records',
     'datatable_info_empty' => 'Empty Info',
     'datatable_zero_record' => 'No matching search results',
     'datatable_length_menu' => 'Showing _MENU_ records per page',

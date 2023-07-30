@@ -1,13 +1,13 @@
 <table class="row-border hover border-collapse table-auto w-full whitespace-no-wrap table-striped relative" id="product_table">
     <thead>
-        <tr class="text-left">
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">ID</th>
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">Name category</th>
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">Price</th>
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">Quantity</th>
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">Remain quantity</th>
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">Description</th>
-            <th class="bg-gray-200 sticky top-0 border-b border-gray-200 px-6 py-4 text-gray-600 font-bold tracking-wider uppercase text-xs dark:text-white dark:bg-gray-800">Actions</th>
+        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-200 dark:text-gray-400 dark:bg-gray-800">
+            <th class="w-8">ID</th>
+            <th class="">Name category</th>
+            <th class="">Price</th>
+            <th class="">Quantity</th>
+            <th class="">Remain quantity</th>
+            <th class="">Description</th>
+            <th class="">Actions</th>
         </tr>
     </thead>
 </table>

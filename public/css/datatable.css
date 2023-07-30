@@ -164,11 +164,6 @@ table.dataTable.no-footer {
     background: #fff !important;
 }
 
-.dataTables_wrapper .dataTables_info {
-    clear: both !important;
-    float: left !important;
-    padding-top: 0.755em !important;
-}
 
 .dt-left {
     text-align: left !important;

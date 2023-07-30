@@ -24,7 +24,9 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="show-record mb-4">
+        </div>
+        <div class="w-full overflow-hidden rounded-lg shadow-xs">
             @include('products.elements.table_product')
         </div>
     </div>
@@ -132,6 +134,7 @@
         });
         $("#product_table_filter input").addClass("w-1/2 rounded-lg border-0 shadow-lg pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:border-0 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input");
         $("#product_table_filter").prependTo(".search-form");
+        $("#product_table_length").prependTo(".show-record");
 
         $(document).on('submit', '.form-search', function(e) {
             e.preventDefault();
